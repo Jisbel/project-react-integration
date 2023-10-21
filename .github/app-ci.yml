@@ -1,0 +1,13 @@
+name: APP CI
+on: [push]
+
+defaults:
+  run:
+    working-directory: ./src
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-lastest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
