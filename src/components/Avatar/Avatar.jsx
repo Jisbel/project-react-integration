@@ -1,15 +1,12 @@
-import React from "react";
-import { Container } from "reactstrap";
+import React from 'react';
+import perfil from '../../img/perfil.jpeg';
 
-function PagesStarter() {
-  // meta title
-  document.title = "Stater Page | Skote - React Admin & Dashboard Template";
-
+function ImgPerfil() {
   return (
-    <div className="page-content">
-      <Container fluid>{/* Render Breadcrumbs */}</Container>
+    <div>
+      <img src={perfil} className="rounded-circle mt-2" alt="imagen de perfil" />
     </div>
   );
 }
 
-export default PagesStarter;
+export default ImgPerfil;
