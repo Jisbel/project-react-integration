@@ -16,18 +16,29 @@ function UserHome() {
       });
   }, []);
 
+  if (!user) return null;
+
   const wrapperCards = () => {
     // eslint-disable-next-line array-callback-return
     const mapping = [];
     // eslint-disable-next-line array-callback-return
-    user.map(() => {
+
+    for (let i = 0; i < user.length; i += 1) {
       mapping.push(
         <div className="m-3 card" style={{ width: ' 18rem' }}>
           <ImgPerfil />
           <div className="card-body">
-            <h5 className="card-title">Nombre Apellido</h5>
-            <p className="card-text ">Direccion: Lorem ipsum dolor sit amet consectetur</p>
-            <p className="card-text ">Telefono: 00000000</p>
+            <h5 className="card-title">{user[i].name}</h5>
+            <p className="card-text ">
+              Direccion:
+              {' '}
+              {user[i].address?.city}
+            </p>
+            <p className="card-text ">
+              Telefono:
+              {' '}
+              {user[i].phone}
+            </p>
 
             <div className="card-footer">
               <Modal />
@@ -35,7 +46,7 @@ function UserHome() {
           </div>
         </div>,
       );
-    });
+    }
     return mapping;
   };
 
