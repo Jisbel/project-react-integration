@@ -1,33 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Button from 'react-bootstrap/Button';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Modal from 'react-bootstrap/Modal';
 
-function Modal() {
+function ModalProfile(user) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <div>
-      <div className="mt-2">
-        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Más información
-        </button>
-      </div>
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Mas informacion
+      </Button>
 
-      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="staticBackdropLabel">Fernanda</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-            </div>
-            <div className="modal-body">
-              Info de fernanda
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-outline-primary">Me interesa</button>
-              <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>{user?.user.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Correo electronico:
+            {' '}
+            {user?.user.email}
+          </p>
+          <p>
+            Sitio web:
+            {' '}
+            {user?.user.website}
+          </p>
+          <p>
+            Nombre de la compañia:
+            {' '}
+            {user?.user.company?.name}
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+          <Button variant="primary">Me interesa</Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 }
 
-export default Modal;
+export default ModalProfile;
